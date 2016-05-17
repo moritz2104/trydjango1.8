@@ -1,1 +1,10 @@
-<h1>Tach!</h1>
+<h1>{{ template_title }}</h1>
+<h2>{{ mo_title }}</h2>
+
+<h3>Benutzername: {{ user }}</h3>
+<h3>Vorname: {{ request.user.first_name }}</h3>
+<h3>Nachname: {{ request.user.last_name }}</h3>
+<h3>Name: {{ request.user.first_name }} {{ request.user.last_name }}</h3>
+<h3>Email: {{ request.user.email }}</h3>
+
+<p>Übrigens, x ist <strong>{{ x }}</strong>! Wer hätte das gedacht?</p>
