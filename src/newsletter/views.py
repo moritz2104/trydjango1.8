@@ -1,4 +1,7 @@
+from django.conf import settings ### !!!
+
 from django.shortcuts import render
+from django.core.mail import send_mail
 
 from .forms import SignUpForm, ContactForm
 
@@ -33,19 +36,30 @@ def home(request):
 def contact(request):
 	form = ContactForm(request.POST or None)
 	if form.is_valid():
-		for key, value in form.cleaned_data.items(): # war iteritems() in python2
-			print (key,':', value)
+		# for key, value in form.cleaned_data.items(): # war iteritems() in python2
+		# 	print (key,':', value)
 
 
 		# Das hier drunter geht auch, aber es geht noch einfacher.
 		# for key in form.cleaned_data:
 			# print (key,"->", form.cleaned_data.get(key) + "\n")
 
-		# Das hier drunter geht auch, ist aber umständlich.
-		# email = form.cleaned_data.get('email')
-		# full_name = form.cleaned_data.get('full_name')
-		# message = form.cleaned_data.get('message')
-		# print ("Name:", full_name, "Email:", email, "Message:", message)
+		# Das hier drunter geht auch, ist aber umständlich. Jetzt aber gut, um die vars an send_email() zu übergeben.
+		form_email = form.cleaned_data.get('email')
+		form_full_name = form.cleaned_data.get('full_name')
+		form_message = form.cleaned_data.get('message')
+		print ("Name:", form_full_name, "Email:", form_email, "Message:", form_message)
+		
+		subject = "Mail von Contact Form"
+		from_email = settings.EMAIL_HOST_USER # siehe settings.py für email Settings
+		to_email = from_email
+		contact_message = "%s schreibt uns via %s:\n\n %s" % (form_full_name, form_email, form_message)
+		send_mail(subject,
+			contact_message,
+			from_email,
+			[to_email], 
+			fail_silently=False)
+
 	context = {
 		"form": 			form,
 	}

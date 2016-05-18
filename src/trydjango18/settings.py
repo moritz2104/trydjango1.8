@@ -27,6 +27,14 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# Email-Settings: Bei gmail habe ich den Zugang für "weniger sichere apps" eingeschaltet: 
+# https://www.google.com/settings/security/lesssecureapps
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'moritzjuedes@gmail.com'
+EMAIL_HOST_PASSWORD = 'vamosarribA14'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
 
 # Application definition
 
