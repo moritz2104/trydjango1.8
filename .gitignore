@@ -3,6 +3,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+static_in_env/
+static_in_pro/
+
 # Python boilerplate.
 __pycache__
 *.pyc
