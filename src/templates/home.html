@@ -1,15 +1,35 @@
-<h1>{{ template_title }}</h1>
-<h2>{{ mo_title }}</h2>
+{% extends "base.html" %}
 
-<h3>Benutzername: {{ user }}</h3>
-<h3>Vorname: {{ request.user.first_name }}</h3>
-<h3>Nachname: {{ request.user.last_name }}</h3>
-<h3>Name: {{ request.user.first_name }} {{ request.user.last_name }}</h3>
-<h3>Email: {{ request.user.email }}</h3>
+{% block head_title %}Willkommen | {{ block.super }}{% endblock head_title %}
 
-<p>Übrigens, x ist <strong>{{ x }}</strong>! Wer hätte das gedacht?</p>
+{% block jumbotron_content %}
 
-<form method="POST" action=""> {% csrf_token %}
-{{ form }}
-<input type="submit" value="SignUp">
-</form>
+    <h1>Hallo {{ user }}</h1>
+    <p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
+    <p>To see the difference between static and fixed top navbars, just scroll.</p>
+    <p>
+      <a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">View navbar docs &raquo;</a>
+    </p>
+
+{% endblock jumbotron_content %}
+
+
+{% block content %}
+
+  <h1>{{ template_title }}</h1>
+  <h2>{{ mo_title }}</h2>
+
+  <h3>Benutzername: {{ user }}</h3>
+  <h3>Vorname: {{ request.user.first_name }}</h3>
+  <h3>Nachname: {{ request.user.last_name }}</h3>
+  <h3>Name: {{ request.user.first_name }} {{ request.user.last_name }}</h3>
+  <h3>Email: {{ request.user.email }}</h3>
+
+  <p>Übrigens, x ist <strong>{{ x }}</strong>! Wer hätte das gedacht?</p>
+
+  <form method="POST" action=""> {% csrf_token %}
+  {{ form }}
+  <input type="submit" value="SignUp">
+  </form>
+
+{% endblock content %}

@@ -30,7 +30,7 @@ def home(request):
 		title = """Hallo %s! %s, du bist echt cool!""" % (request.user, request.user)
 	
 
-	return render(request, "base.html", context)
+	return render(request, "home.html", context)
 
 
 def contact(request):
