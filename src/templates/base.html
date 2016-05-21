@@ -15,40 +15,25 @@
 
     {% include 'head_css.html' %}
 
-      <style>
-      {% block style %}{% endblock %}
-      </style>
-
-
-
+    <style>
+    {% block style %}{% endblock %}
+    </style> 
+        
   </head>
 
-  <body>
-  {% include 'navbar.html' %}
 
+  <body>
+
+    {% include 'navbar.html' %}
 
     <div class="container">
-            {% block jumbotron %}
-            <!-- Main component for a primary marketing message or call to action -->
-        <div class="jumbotron">
-        {% block jumbotron_content %}
-
-        {% endblock %}
-        </div>
-            {% endblock %}
-
-
-
-          
-            {% block content %}
-
-            {% endblock %}
-              
-
-    </div> <!-- /container -->
+      {% block jumbotron %}
+      {% endblock jumbotron %}
+      {% block content %}
+      {% endblock %}
+    </div>
 
     {% include "javascript.html" %}
-    
-    
+
   </body>
 </html>
