@@ -14,41 +14,47 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+#root of project
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'vq-vq=ztprsddniv=y8=y)k3xhgrg%^qd&vhou&=5ule*48qw7'
+SECRET_KEY = 'csqwlmc8s55o($rt6ozh7u+ui9zb-et00w$d90j8$^!nvj41_r'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
 
-# Email-Settings: Bei gmail habe ich den Zugang für "weniger sichere apps" eingeschaltet: 
-# https://www.google.com/settings/security/lesssecureapps
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'moritzjuedes@gmail.com'
-EMAIL_HOST_PASSWORD = 'vamosarribA14'
+EMAIL_HOST_USER = 'yourgmail@gmail.com'
+EMAIL_HOST_PASSWORD = 'yourpassword'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+''' 
+If using gmail, you will need to
+unlock Captcha to enable Django 
+to  send for you:
+https://accounts.google.com/displayunlockcaptcha
+'''
+
 
 
 # Application definition
 
 INSTALLED_APPS = (
-    # Django Apps
+    #django app
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Third Party Apps
+    #third party apps
     'crispy_forms',
-    # Custom Apps
+    #my apps
     'newsletter',
 )
 
@@ -68,7 +74,7 @@ ROOT_URLCONF = 'trydjango18.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')], # legt den Ort fuer Templates fest
+        'DIRS': [os.path.join(BASE_DIR, "templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -114,19 +120,21 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# Hier landen alle staticfiles nach 'collectstatic':
 STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_in_env", "static_root")
-
-# Hier kommen die custom staticfiles her (für 'collectstatic'):
+    
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static_in_pro", "our_static"),
-    # '/var/www/static/',
+    #os.path.join(BASE_DIR, "static_in_env"),
+    #'/var/www/static/',
 )
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_in_env", "media_root")
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
+
+
 
 
 

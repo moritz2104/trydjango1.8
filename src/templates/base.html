@@ -1,4 +1,5 @@
 {% load staticfiles %}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,35 +9,46 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="{% static 'favicon.ico' %}">
+    <link rel="icon" href="../../favicon.ico">
 
     <title>{% block head_title %}MVP Landing{% endblock %}</title>
 
-    {% include "head_css.html" %}
+    {% include 'head_css.html' %}
+
+      <style>
+      {% block style %}{% endblock %}
+      </style>
+
+
 
   </head>
 
   <body>
+  {% include 'navbar.html' %}
 
-    {% include "navbar.html" %}
-    
+
     <div class="container">
-    
-      {% block jumbotron %}
+            {% block jumbotron %}
+            <!-- Main component for a primary marketing message or call to action -->
         <div class="jumbotron">
+        {% block jumbotron_content %}
 
-          {% block jumbotron_content %}
-          {% endblock jumbotron_content %}
-        
+        {% endblock %}
         </div>
-      {% endblock jumbotron %}
+            {% endblock %}
 
-      {% block content %}
-      {% endblock content %}
-    
+
+
+          
+            {% block content %}
+
+            {% endblock %}
+              
+
     </div> <!-- /container -->
 
     {% include "javascript.html" %}
+    
     
   </body>
 </html>

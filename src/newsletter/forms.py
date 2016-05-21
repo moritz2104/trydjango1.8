@@ -1,27 +1,30 @@
 from django import forms
+
 from .models import SignUp
 
 class ContactForm(forms.Form):
-	full_name = forms.CharField(required = False)
+	full_name = forms.CharField(required=False)
 	email = forms.EmailField()
 	message = forms.CharField()
 
-# Legt die Felder in der Admin fest.
+
 class SignUpForm(forms.ModelForm):
 	class Meta:
 		model = SignUp
 		fields = ['full_name', 'email']
+		### exclude = ['full_name']
 
-	def clean_email(self): # WICHTIG: das hier muss so aussehen: clean_<field_name>(self):
-		email = self.cleaned_data.get('email') # Holt sich email nachdem es die django-eigene Vlidation durchlaufen hat
-		email_base, provider = email.split('@') # teilt email beim @
-		host, domain = provider.split('.') # teilt alles hinterm @ in vor und nach dem punkt
-		if not "moritz" in host:
-			raise forms.ValidationError("Ey, du brauchst eine Email-Adresse mit ...@moritz drin!")
+	def clean_email(self):
+		email = self.cleaned_data.get('email')
+		email_base, provider = email.split("@")
+		domain, extension = provider.split('.')
+		# if not domain == 'USC':
+		# 	raise forms.ValidationError("Please make sure you use your USC email.")
+		if not extension == "edu":
+			raise forms.ValidationError("Please use a valid .EDU email address")
 		return email
 
 	def clean_full_name(self):
 		full_name = self.cleaned_data.get('full_name')
-		if not "Moritz" in full_name:
-			raise forms.ValidationError("Tja, wir nehmen hier nur Leute, die Moritz heißen.")
+		#write validation code.
 		return full_name
