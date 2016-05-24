@@ -50,10 +50,12 @@ INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+    'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     #third party apps
     'crispy_forms',
+    'registration',
     #my apps
     'newsletter',
 )
@@ -131,8 +133,16 @@ STATICFILES_DIRS = (
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_in_env", "media_root")
 
+# DJANGO REGISTRATION REDUX SETTINGS
+ACCOUNT_ACTIVATION_DAYS = 7
+REGISTRATION_AUTO_LOGIN = True
+REGISTRATION_EMAIL_HTML = True
+# REGISTRATION_DEFAULT_FROM_EMAIL = ''
+
+# CRISPY FORM TAGS
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
+SITE_ID = 1
 
 
 
