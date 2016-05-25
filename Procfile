@@ -1,0 +1,1 @@
+web: gunicorn src.trydjango18.wsgi --log-file -
