@@ -7,12 +7,38 @@
 
 <style>
 {% block style %}
+.navbar-static-top {
+	margin-bottom: 0 !important;
+}
+.jumbotron {
+	background-color: green;
+	color: white;
+}
 {% endblock %}
 </style>
 
-{% block jumbotron %}
+{% block content %}
 
-<div class="jumbotron">      
+{% if request.user.is_authenticated %}	
+
+	<div class="container">
+	<h1>Du bist eingeloggt!</h1>
+
+	{% if queryset %}
+	<h2>Welcome Staff!</h2>
+		<table class="table">
+			{% for item in queryset %}
+				<tr><td>{{ forloop.counter }}</td><td>{{ item }}</td><td>{{ item.full_name }}</td><td>{{ item.email }}</td><td>{{ item.timestamp }}</td><td>{{ item.timestamp|timesince }}</td></tr>
+			{% endfor %}
+		</table>
+	</div>
+	{% endif %}
+
+{% else %}
+
+{% block jumbotron %}
+<div class="jumbotron">
+<div class="container">
 	<div class="row">
 		<div class='col-sm-6'>
 		<h1>Try Django 1.8</h1>
@@ -24,11 +50,10 @@
 		<div class='col-sm-6' style="background-color:black;height:300px;"></div>
 	</div>
 </div>
+</div>
 
 {% endblock jumbotron %}
-
-
-{% block content %}
+<div class="container">
 	<div class="row">
 
 	  <div class="col-sm-3 pull-right">
@@ -44,19 +69,25 @@
 		</div>
 
 		<div class='col-sm-3'>
-	<p class='lead text-align-center'>Built with Django &amp; Bootstrap</p>
+	<p class='lead text-align-center'>Built with Django &amp; Bootstrap <br>
+	<i class="fa fa-envira fa-5x" aria-hidden="true"></i></p>
 	</div>
 
 	<div class='col-sm-3'>
-	<p class='lead text-align-center'>Created for Starters of all kinds. </p>
+	<p class='lead text-align-center'>Created for Starters of all kinds. <br>
+	<span class="fa-stack fa-lg fa-4x">
+  		<i class="fa fa-circle fa-stack-2x"></i>
+  		<i class="fa fa-flag fa-stack-1x fa-inverse"></i>
+	</span> </p>
 	</div>
 
 	<div class='col-sm-3'>
-	<p class='lead text-align-center'>Always Open Source</p>
+	<p class='lead text-align-center'>Always Open Source
+	<i class="fa fa-cog fa-spin fa-5x fa-fw"></i>
+	<span class="sr-only">Loading...</span></p>
+	</div>
 	</div>
 
-
-	</div>
-
-
+</div>
+{% endif %}
 {% endblock %}
